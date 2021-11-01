@@ -1,7 +1,6 @@
 package edu.cnm.deepdive.codebreaker.service;
 
-import edu.cnm.deepdive.codebreaker.model.Game;
-import edu.cnm.deepdive.codebreaker.model.Guess;
+import edu.cnm.deepdive.codebreaker.model.entity.Game;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
