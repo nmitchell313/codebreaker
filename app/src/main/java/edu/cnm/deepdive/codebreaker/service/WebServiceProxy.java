@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cnm.deepdive.codebreaker.BuildConfig;
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
+import edu.cnm.deepdive.codebreaker.model.entity.Guess;
 import io.reactivex.Single;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

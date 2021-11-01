@@ -18,7 +18,7 @@ import java.util.List;
         @Index(value = {"service_key"}, unique = true)
     }
 )
-public class Guess {
+public class Game {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "game_id")

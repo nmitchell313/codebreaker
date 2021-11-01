@@ -42,10 +42,10 @@ public interface GuessDao {
   @Delete
   Single<Integer> delete(Collection<Guess> guesses);
 
-  @Query("SELECT * FROM Guess ORDER BY created DESC")
+  @Query("SELECT * FROM guess ORDER BY created DESC")
   LiveData<List<Guess>> selectAll();
 
-  @Query("SELECT * FROM Guess WHERE guess_id = :guessId")
+  @Query("SELECT * FROM guess WHERE guess_id = :guessId")
   LiveData<Guess> select(long guessId);
 
 

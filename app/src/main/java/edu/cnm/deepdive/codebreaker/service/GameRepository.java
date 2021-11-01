@@ -1,6 +1,7 @@
 package edu.cnm.deepdive.codebreaker.service;
 
 import edu.cnm.deepdive.codebreaker.model.entity.Game;
+import edu.cnm.deepdive.codebreaker.model.entity.Guess;
 import io.reactivex.Single;
 import io.reactivex.schedulers.Schedulers;
 
@@ -32,11 +33,17 @@ public class GameRepository {
                     return guess;
                 })
                 .flatMap((guess) -> proxy.submitGuess(guess, game.getServiceKey()))
-                .map((guess -> {
+                .map((guess) -> {
                     game.getGuesses().add(guess);
                     game.setSolved(guess.isSolution());
                     return game;
-                }))
+                })
+//            .flatMap((g) -> {
+//             if (g.isSolved()) {
+//               // use DOA to write Game and Guesses to database.
+//             }
+//             return g;
+//            })
                 .subscribeOn(Schedulers.io());
 
     }
