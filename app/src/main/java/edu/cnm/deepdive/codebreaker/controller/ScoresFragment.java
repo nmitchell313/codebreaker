@@ -1,4 +1,4 @@
-package edu.cnm.deepdive.codebreaker.controller.ui.gallery;
+package edu.cnm.deepdive.codebreaker.controller;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,18 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import edu.cnm.deepdive.codebreaker.R;
+import edu.cnm.deepdive.codebreaker.viewmodel.ScoresViewModel;
 import edu.cnm.deepdive.codebreaker.databinding.FragmentGalleryBinding;
 
-public class GalleryFragment extends Fragment {
+public class ScoresFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private ScoresViewModel galleryViewModel;
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+                new ViewModelProvider(this).get(ScoresViewModel.class);
 
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
