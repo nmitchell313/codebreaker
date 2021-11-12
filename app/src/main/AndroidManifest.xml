@@ -3,6 +3,8 @@
   xmlns:tools="http://schemas.android.com/tools"
   package="edu.cnm.deepdive.codebreaker">
 
+  <uses-permission android:name="android.permission.INTERNET"/>
+
   <application
     android:allowBackup="false"
     android:icon="@mipmap/ic_launcher"
@@ -12,13 +14,10 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.Codebreaker"
     tools:ignore="AllowBackup">
-    <activity android:name=".controller.LoginActivity">
-    </activity>
-    <activity
-      android:exported="true"
-      android:label="@string/app_name"
-      android:name=".controller.MainActivity"
-      android:theme="@style/Theme.Codebreaker.NoActionBar">
+
+    <activity android:name=".controller.LoginActivity"
+      android:exported="true">
+
       <intent-filter>
 
         <!-- Launches app -->
@@ -26,9 +25,16 @@
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
+
     </activity>
+
+    <activity
+      android:label="@string/app_name"
+      android:name=".controller.MainActivity"
+      android:theme="@style/Theme.Codebreaker.NoActionBar">
+    </activity>
+
   </application>
 
-  <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
