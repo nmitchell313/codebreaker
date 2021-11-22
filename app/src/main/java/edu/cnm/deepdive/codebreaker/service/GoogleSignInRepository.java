@@ -25,14 +25,13 @@ public class GoogleSignInRepository {
 
   private final GoogleSignInClient client;
 
-  private GoogleSignInAccount account;
-
   private GoogleSignInRepository() {
     GoogleSignInOptions options = new GoogleSignInOptions.Builder()
         .requestEmail()
         .requestId()
         .requestProfile()
-        .requestIdToken(BuildConfig.CLIENT_ID)
+//        TODO uncomment following line after branching for example capstone client.
+//        .requestIdToken(BuildConfig.CLIENT_ID)
         .build();
     client = GoogleSignIn.getClient(context, options);
   }
@@ -50,7 +49,7 @@ public class GoogleSignInRepository {
         .create((SingleOnSubscribe<GoogleSignInAccount>) (emitter) ->
             client
                 .silentSignIn()
-                .addOnSuccessListener(this::setAccount)
+//                .addOnSuccessListener(this::logAccount)
                 .addOnSuccessListener(emitter::onSuccess)
                 .addOnFailureListener(emitter::onError)
         )
@@ -73,7 +72,7 @@ public class GoogleSignInRepository {
             Task<GoogleSignInAccount> task =
                 GoogleSignIn.getSignedInAccountFromIntent(result.getData());
             GoogleSignInAccount account = task.getResult(ApiException.class);
-            setAccount(account);
+//            logAccount(account);
             emitter.onSuccess(account);
           } catch (ApiException e) {
             emitter.onError(e);
@@ -88,14 +87,13 @@ public class GoogleSignInRepository {
             client
                 .signOut()
                 .addOnSuccessListener((ignored) -> emitter.onComplete())
-                .addOnCompleteListener((ignored) -> setAccount(null))
+//                .addOnCompleteListener((ignored) -> logAccount(null))
                 .addOnFailureListener(emitter::onError)
         )
         .subscribeOn(Schedulers.io());
   }
 
-  public void setAccount(GoogleSignInAccount account) {
-    this.account = account;
+  public void logAccount(GoogleSignInAccount account) {
     if (account != null) {
       Log.d(getClass().getSimpleName(),
           (account.getIdToken()!=null) ? getBearerToken(account) : "(none)");
