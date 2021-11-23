@@ -172,7 +172,7 @@ public class PlayFragment extends Fragment {
   private String[] getUnicodeArray(String source) {
     return source
         .codePoints()
-        .mapToObj((codePoint) -> new String(new int[codePoint], 0, 1))
+        .mapToObj((codePoint) -> new String(new int[]{codePoint}, 0, 1))
         .toArray(String[]::new);
   }
 }
