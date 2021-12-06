@@ -31,7 +31,7 @@ public class GoogleSignInRepository {
         .requestId()
         .requestProfile()
 //        TODO uncomment following line after branching for example capstone client.
-//        .requestIdToken(BuildConfig.CLIENT_ID)
+        .requestIdToken(BuildConfig.CLIENT_ID)
         .build();
     client = GoogleSignIn.getClient(context, options);
   }
@@ -49,7 +49,7 @@ public class GoogleSignInRepository {
         .create((SingleOnSubscribe<GoogleSignInAccount>) (emitter) ->
             client
                 .silentSignIn()
-//                .addOnSuccessListener(this::logAccount)
+                .addOnSuccessListener(this::logAccount)
                 .addOnSuccessListener(emitter::onSuccess)
                 .addOnFailureListener(emitter::onError)
         )
@@ -72,7 +72,7 @@ public class GoogleSignInRepository {
             Task<GoogleSignInAccount> task =
                 GoogleSignIn.getSignedInAccountFromIntent(result.getData());
             GoogleSignInAccount account = task.getResult(ApiException.class);
-//            logAccount(account);
+            logAccount(account);
             emitter.onSuccess(account);
           } catch (ApiException e) {
             emitter.onError(e);
@@ -87,7 +87,7 @@ public class GoogleSignInRepository {
             client
                 .signOut()
                 .addOnSuccessListener((ignored) -> emitter.onComplete())
-//                .addOnCompleteListener((ignored) -> logAccount(null))
+                .addOnCompleteListener((ignored) -> logAccount(null))
                 .addOnFailureListener(emitter::onError)
         )
         .subscribeOn(Schedulers.io());

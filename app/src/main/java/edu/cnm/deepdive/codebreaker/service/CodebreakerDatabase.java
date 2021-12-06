@@ -19,7 +19,6 @@ import java.util.Date;
     views = {GameSummary.class},
     version = 1,
     exportSchema = true
-
 )
 @TypeConverters({Converters.class})
 public abstract class CodebreakerDatabase extends RoomDatabase {
